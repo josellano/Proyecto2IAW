@@ -5,13 +5,33 @@ function pageInit() {
 	inputsConfig();
 	loadDisableds(); // no hace nada todavia
 
-	$("#post").on("click",function(){
-		$.ajax({
-			type: "POST",
-			url: "/PostToDB",
-			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    	data: {"strData": cucha}});
+	$(document).ready(function(){
+		$("#post").click(function(){
+			$.ajax({
+				type: "POST",
+				url: "/PostToDB",
+				headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+				data: {"strData": cucha}
+			});
+		});
 	});
+
+	$(document).ready(function(){
+		$("#get").click(function(){
+			$.ajax({
+				type: "GET",
+				url: "/GetFromDB",
+				dataType: "json",/*
+				success: function(data){
+					$.each(data, function(i, item) {
+						cucha[item]=data[item];
+						alert(cucha[item]);
+					});
+      	}*/
+      });
+		});
+	});
+
 }
 
 function reDraw(){

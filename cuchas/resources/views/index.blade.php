@@ -101,8 +101,8 @@
 
 						<div class="col-lg-6 navUnit">
 							<h3>Color</h3>
-								<input id="colorPared1" type="color" name="favcolor" value="#0000ff" title="100" onchange="reDraw()"><br>
-								<br><input id="colorPared2" type="color" name="favcolor" value="#0000ff" title="200" onchange="reDraw()">
+								<input id="colorPared1" type="color" name="favcolor" value="#0000ff" title="100" onchange="btnFunctions(id,value)"><br>
+								<br><input id="colorPared2" type="color" name="favcolor" value="#0000ff" title="200" onchange="btnFunctions(id,value)">
 						</div>
 					</div>
 
@@ -133,8 +133,8 @@
 
 					<meta name="csrf-token" content="{{ csrf_token() }}" />
 
-					<button id="post" type="button" class="btn1">Post</button>
-
+					<button id="post" type="button" class="btn1">Guardar</button>
+					<button id="get" type="button" class="btn1">Cargar</button>
 				</center>
 			</div>
 			<div class="col-lg-4">

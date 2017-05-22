@@ -25,5 +25,5 @@ Route::get('/readme', 'HomeController@read');
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
-
+Route::get('/GetFromDB','CuchaController@recover');
 Route::post('/PostToDB','CuchaController@store');

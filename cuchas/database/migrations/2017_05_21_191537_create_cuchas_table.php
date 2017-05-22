@@ -14,7 +14,7 @@ class CreateCuchasTable extends Migration
     public function up()
     {
         Schema::create('cuchas', function (Blueprint $table) {
-          $table->increments('id');
+          $table->string('email');
           $table->string('tamaño');
           $table->string('material');
           $table->string('ventana');
