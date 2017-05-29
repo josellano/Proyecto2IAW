@@ -11,16 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@inicio')->name('home');
-Route::get('/index', 'HomeController@ppal')->name('index');
-Route::get('/readme', 'HomeController@read');
+Route::get('/', 'GuestController@ppal');
 
+Route::get('/index', 'HomeController@ppal')->name('index');
+
+Route::get('/guest', 'GuestController@ppal');
+Route::get('/admin', 'AdminController@ppal');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');

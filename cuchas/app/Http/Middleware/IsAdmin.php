@@ -22,8 +22,8 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if ($this->auth->user()->type != 'admin')
-          redirect()->to('index');
-        
+          redirect()->to('/');
+
 
         return $next($request);
     }

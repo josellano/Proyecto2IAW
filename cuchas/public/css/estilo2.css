@@ -1,3 +1,5 @@
+
+
 body {
     background-color: black;
 }
@@ -120,6 +122,29 @@ p {
 	border-width: 3px;
 	border-color: black;
 }
+
+.btnEditPage{
+  position: absolute;
+  left: 50%;
+}
+
+.navbar-collapse,navbar-static-top,navbar-default,navbar-header,navbar-brand,nav navbar-nav navbar-right,container{
+  background-color: black;
+	color: white;
+  padding-right: 0px;
+padding-left: 0px;
+}
+
+.navbar-default {
+    background-color: black;
+    color: white;
+
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
 
 canvas {
 	overflow: auto;
