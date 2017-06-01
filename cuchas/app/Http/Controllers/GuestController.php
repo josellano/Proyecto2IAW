@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\pageModel\Tamano;
+use App\pageModel\Estilo;
+use App\pageModel\Forma;
+use App\pageModel\Material;
+use App\pageModel\Ventana;
 
 class GuestController extends Controller
 {
@@ -17,12 +22,17 @@ class GuestController extends Controller
     }
 
 
+    public function ppal()
+    {
+        $tamanos = Tamano::all();
+        $estilos = Estilo::all();
+        $formas = Forma::all();
+        $materiales = Material::all();
+        $ventanas = Ventana::all();
 
-     public function ppal()
-     {
-         return view('index');
-     }
-
+        return view('index')
+        ->with(['tamanos'=>$tamanos,'estilos'=>$estilos,'formas'=>$formas,'materiales'=>$materiales,'ventanas'=>$ventanas]);
+    }
     
 
 }

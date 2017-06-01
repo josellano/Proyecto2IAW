@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\pageModel;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,6 @@ class Forma extends Model
 {
     protected $table='formas';
 
-    protected $fillable=['input','type','name','value','title'];
+    protected $fillable=['name','value','title','text'];
 
 }

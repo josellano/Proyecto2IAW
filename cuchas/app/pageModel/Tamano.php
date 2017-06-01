@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\pageModel;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,7 @@ class Tamano extends Model
 {
     protected $table='tamanos';
 
-    protected $fillable=['input','type','name','value','title'];
+    protected $fillable=['name','value','title','text'];
 
+    public $timestamps = false;
 }

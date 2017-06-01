@@ -3,15 +3,14 @@ function pageInit() {
 	cargarEstilo();
 	newCucha();
 	inputsConfig();
-	loadDisableds(); // no hace nada todavia
 
 	$(document).ready(function(){
 		$("#post").click(function(){
 			$.ajax({
 				type: "POST",
-				url: "/PostToDB",
+				url: "/saveModel",
 				headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-				data: {"strData": cucha}
+				data: {"data": cucha}
 			});
 		});
 	});
@@ -20,18 +19,26 @@ function pageInit() {
 		$("#get").click(function(){
 			$.ajax({
 				type: "GET",
-				url: "/GetFromDB",
-				dataType: "json",/*
+				url: "/loadModel",
 				success: function(data){
-					$.each(data, function(i, item) {
-						cucha[item]=data[item];
-						alert(cucha[item]);
+					jQuery.each(data, function(key, value) {
+						var allInputs = document.getElementsByName(key);
+				    	for(var x=0;x<allInputs.length;x++){
+				        	if(allInputs[x].value == value){
+				            	allInputs[x].checked=true;
+				            	modifyJson(key,value);
+				        	}
+				        	else
+				        		if(allInputs[x].value[0] == '#')
+				        			allInputs[x].value=value;
+				        }
 					});
-      	}*/
-      });
+					reDraw();
+					updateSum();
+				}
+			});
 		});
 	});
-
 }
 
 function reDraw(){
@@ -47,7 +54,7 @@ function reDraw(){
     }
 
 	var estilo;
-    var radioBtns=document.getElementsByName("estilo");
+    radioBtns=document.getElementsByName("estilo");
 
 	for(var i=0;i<radioBtns.length;i++) {
         if(radioBtns[i].checked)
@@ -115,15 +122,22 @@ function inputsConfig(){
 			radioBtns[i].setAttribute("onclick","btnFunctions(name,value)");
 		}
 
-
 		// setea la configuracion inicial de los botones de material
 		radioBtns=document.getElementsByName("material");
 		for(var i=0;i<radioBtns.length;i++) {
 			radioBtns[i].setAttribute("onclick","changeMat(name,value)");
 		}
+
 		// setea funcionalidad de esconderse y mostraarse en el boton de estilos
-		(document.getElementsByClassName("1color")[0]).setAttribute("onclick","btnsEstilo(name,value,1)");
-		(document.getElementsByClassName("2colores")[0]).setAttribute("onclick","btnsEstilo(name,value,2)");
+		radioBtns = document.getElementsByClassName("1color");
+		for(var i=0;i<radioBtns.length;i++) {
+			radioBtns[i].setAttribute("onclick","btnsEstilo(name,value,1)");
+		}
+
+		radioBtns = document.getElementsByClassName("2colores");
+		for(var i=0;i<radioBtns.length;i++) {
+			radioBtns[i].setAttribute("onclick","btnsEstilo(name,value,2)");
+		}
 
 		updateSum(); // lo pongo xq lo habias puesto en el script de index, no se is es necesario
 

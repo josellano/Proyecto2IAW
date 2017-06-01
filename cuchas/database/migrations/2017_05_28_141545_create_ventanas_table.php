@@ -14,11 +14,11 @@ class CreateVentanasTable extends Migration
     public function up()
     {
       Schema::create('ventanas', function (Blueprint $table) {
-        $table->string('input');
-        $table->string('type');
+        $table->increments('id');
         $table->string('name');
         $table->string('value');
         $table->string('title');
+        $table->string('text');
       });
     }
 

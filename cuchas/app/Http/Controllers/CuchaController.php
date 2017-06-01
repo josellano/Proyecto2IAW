@@ -4,27 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App/Cucha as Cucha;
+use App\Cucha;
+use Auth;
 
 class CuchaController extends Controller
 {
     public function store(Request $req){
 
-      $cucha = new Cucha;
-      $cucha->create($request->all());
-    
-  return redirect('/');
+      $user = Auth::user();
+      $datos = $req->input('data');
 
+      $cucha = Cucha::find($user->email);
 
+      if($cucha == null)
+        $cucha = new Cucha;
 
+      $cucha->email=$user->email;
+      $cucha->tamaño=$datos['tamaño'];
+      $cucha->material=$datos['material'];
+      $cucha->ventana=$datos['ventana'];
+      $cucha->estilo=$datos['estilo'];
+      $cucha->colorPared1=$datos['colorPared1'];
+      $cucha->colorPared2=$datos['colorPared2'];
+      $cucha->forma=$datos['forma'];
+      $cucha->colorTecho=$datos['colorTecho'];
+
+      $cucha->save();
+
+      return redirect('/');
 
     }
 
     public function recover(){
-      $str_mail = app('Illuminate\Contracts\Auth\Guard')->user()->__get("email");
-      $cucha = DB::table('cuchas')
-        ->where('email', $str_mail)
-        ->first();
-      return json_encode($cucha);
+
+      $user = Auth::user();
+      
+      return Cucha::find($user->email);
+
     }
 }

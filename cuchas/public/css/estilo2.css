@@ -126,6 +126,7 @@ p {
 .btnEditPage{
   position: absolute;
   left: 50%;
+  color: black;
 }
 
 .navbar-collapse,navbar-static-top,navbar-default,navbar-header,navbar-brand,nav navbar-nav navbar-right,container{

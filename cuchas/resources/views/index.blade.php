@@ -1,16 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@extends('base')
 
-<html>
-<head>
-	<title>Cuchas</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<link rel="icon" type="image/png" href="source/iconoPesta.png" />
+@section('imports')
 
 	<link id="estilo1" rel="stylesheet" type="text/css" href="css/estilo1.css">
 
@@ -23,14 +13,12 @@
 	<script src="js/imageDownload.js" type="text/javascript"></script>
 	<script src="js/reimg.js"></script>
 	<script src="js/admin.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+@endsection
 
-	<script src="js/vex/vex.combined.min.js"></script>
-	<link rel="stylesheet" href="/css/vex/vex.css" />
-	<link rel="stylesheet" href="/css/vex/vex-theme-os.css" />
-  <link rel="stylesheet" href="/css/vex/vex-theme-bottom-right-corner.css" />
+@section('content')
 
-</head>
 <body onload="pageInit()">
 	<div id="app">
 			<nav class="navbar navbar-default navbar-static-top">
@@ -98,36 +86,37 @@
 	<div class="col-lg-12">
 				@yield('content')
 	</div>
+
 	<div id="menu" class="row">
 		<div class="col-lg-6">
 			<div class="col-lg-4">
-
-
 				<h3>Tamaño</h3>
-					<input type="radio" id="t1" name="tamaño" value="chica" title="100" > Chica(0.8m x 0.5m)<br>
-					<input type="radio" id="t2" name="tamaño" value="mediana" title="200" checked> Mediana(1m x 0.6m)<br>
-					<input type="radio" id="t3" name="tamaño" value="grande" title="300"> Grande(1.2m x 0.8m)<br>
-
-					<br>
+				<div class="form-group">
+			 	@foreach($tamanos as $tamano)
+					<input type="radio" name='{{ $tamano->name }}' value='{{ $tamano->value }}' 
+						title='{{ $tamano->type }}'>{{ $tamano->text }}<br>
+				@endforeach
+				</div>
+				<br>
 			</div>
 
 			<div class="col-lg-4">
-				<img id="imgMat" src="source/madera.jpg" style="float: left; margin-top:5px; margin-right: 10px; width:16px; height:150px;">
+				<img id="imgMat" style="float: left; margin-top:5px; margin-right: 10px; width:16px; height:150px;">
 				<h3>Material</h3>
-					<input type="radio" id="m1" name="material" value="madera" title="150" checked> Madera<br>
-					<input type="radio" id="m2" name="material" value="chapa" title="100"> Chapa<br>
-					<input type="radio" id="m3" name="material" value="fibra" title="200"> Fibra de vidrio<br>
-					<input type="radio" id="m4" name="material" value="plastico" title="50"> Plastico<br>
-
-					<br>
+				@foreach($materiales as $material)
+					<input type="radio" name='{{ $material->name }}' value='{{ $material->value }}' 
+						title='{{ $material->type }}'>{{ $material->text }}<br>
+				@endforeach
+				<br>
 			</div>
 
 			<div class="col-lg-4">
 				<h3>Ventana</h3>
-					<input type="radio" name="ventana" value="redonda" title="100" > Redonda<br>
-					<input type="radio" name="ventana" value="cuadrada" title="100" checked> Cuadrada<br>
-					<input type="radio" name="ventana" value="ninguna" title="0" > Ninguna<br>
-					<br>
+				@foreach($ventanas as $ventana)
+					<input type="radio" name='{{ $ventana->name }}' value='{{ $ventana->value }}' 
+						title='{{ $ventana->type }}'>{{ $ventana->text }}<br>
+				@endforeach
+				<br>
 			</div>
 
 			<div class="row">
@@ -141,29 +130,31 @@
 					<div id="paredes" class="tab-pane fade in active">
 						<div class="col-lg-6 navUnit">
 							<h3>Estilo</h3>
-								<input class="2colores" type="radio" name="estilo" value="rayado" title="200"> Rayado<br>
-								<input class="1color" type="radio" name="estilo" value="plano" title="150" checked> Plano<br>
-								<br>
+							@foreach($estilos as $estilo)
+								<input type="radio" class='{{ $estilo->class }}' name='{{ $estilo->name }}' value='{{ $estilo->value }}' title='{{ $estilo->type }}'>{{ $estilo->text }}<br>
+							@endforeach
+							<br>
 						</div>
 
 						<div class="col-lg-6 navUnit">
 							<h3>Color</h3>
-								<input id="colorPared1" type="color" name="favcolor" value="#0000ff" title="100" onchange="reDraw()"><br>
-								<br><input id="colorPared2" type="color" name="favcolor" value="#0000ff" title="200" onchange="reDraw()">
+								<input id="colorPared1" type="color" name="colorPared1" value="#0000ff" title="100" onchange="btnFunctions(id,value)"><br>
+								<br><input id="colorPared2" type="color" name="colorPared2" value="#0000ff" title="200" onchange="btnFunctions(id,value)">
 						</div>
 					</div>
 
 					<div id="techo" class="tab-pane fade">
 						<div class="col-lg-6 navUnit">
 							<h3>Forma</h3>
-								<input type="radio" name="forma" value="un agua" title="100" checked> Un agua<br>
-								<input type="radio" name="forma" value="dos aguas" title="200"> Dos aguas<br>
-								<br>
+							@foreach($formas as $forma)
+								<input type="radio" name='{{ $forma->name }}' value='{{ $forma->value }}' title='{{ $forma->type }}'>{{ $forma->text }}<br>
+							@endforeach
+							<br>
 						</div>
 
 						<div class="col-lg-6 navUnit">
 							<h3>Color</h3>
-								<input  id="colorTecho" type="color" name="favcolor" value="#ff0000" title="100" onchange="btnFunctions(id,value)">
+								<input  id="colorTecho" type="color" name="colorTecho" value="#ff0000" title="100" onchange="btnFunctions(id,value)">
 						</div>
 					</div>
 				</div>
@@ -181,6 +172,7 @@
 					<meta name="csrf-token" content="{{ csrf_token() }}" />
 					@if (!(Auth::guest()))
 					<button id="post" type="button" class="btn1">Guardar</button>
+					<button id="get" type="button" class="btn1">Cargar</button>
 					@endif
 				</center>
 			</div>
@@ -215,15 +207,11 @@
 
 			@if (Auth::user()->type == 'admin')
 
-					<button class="btnEditPage" type="button">Editar Pagina</button>
+					<a href="{{ route('editPage') }}" ><input type="submit" name="button" value="Editar pagina" class="btnEditPage"/><a/>
 			@endif
 			@endif
 
 	</footer>
+</body>
 
-
-
-
-
-	</body>
-</html>
+@endsection

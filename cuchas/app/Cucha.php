@@ -10,6 +10,5 @@ class Cucha extends Model
 
     protected $fillable=['email','tamaño','material','ventana','estilo','colorPared1','colorPared2','forma','colorTecho'];
 
-    public $incrementing = false;
     protected $primaryKey = 'email';
 }

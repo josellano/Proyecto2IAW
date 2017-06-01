@@ -88,3 +88,18 @@ canvas {
     padding: 5px;
     background: #FFFFFF;
 }
+
+
+td{
+
+  text-align: center;
+  padding: 2px;
+}
+tr{
+  text-align: center;
+}
+
+.nav-stacked{
+    text-align:center;
+    background-color: white;
+}

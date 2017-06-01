@@ -14,12 +14,12 @@ class CreateEstilosTable extends Migration
     public function up()
     {
       Schema::create('estilos', function (Blueprint $table) {
-        $table->string('input');
+        $table->increments('id');
         $table->string('class');
-        $table->string('type');
         $table->string('name');
         $table->string('value');
         $table->string('title');
+        $table->string('text');
       });
     }
 
