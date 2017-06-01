@@ -44,11 +44,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div hidden class="form-group">
                            <label for="type"> Type</label>
                            <select name="type" class="form-control">
-                               <option value="" disabled selected>Elige una opcion...</option>
-                               <option value="admin">Administrador</option>
                                <option value="user">Usuario normal</option>
                            </select>
                        </div>

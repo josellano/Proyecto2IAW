@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call(VentanasTableSeeder::class);
          $this->call(EstilosTableSeeder::class);
          $this->call(FormasTableSeeder::class);
+         $this->call(PredeterminadosTableSeeder::class);
 
     }
 }

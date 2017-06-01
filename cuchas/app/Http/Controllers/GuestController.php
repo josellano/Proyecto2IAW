@@ -8,6 +8,7 @@ use App\pageModel\Estilo;
 use App\pageModel\Forma;
 use App\pageModel\Material;
 use App\pageModel\Ventana;
+use App\Cucha;
 
 class GuestController extends Controller
 {
@@ -29,10 +30,11 @@ class GuestController extends Controller
         $formas = Forma::all();
         $materiales = Material::all();
         $ventanas = Ventana::all();
+        $predeterminados = Cucha::all()->where('predet','>',0);
 
         return view('index')
-        ->with(['tamanos'=>$tamanos,'estilos'=>$estilos,'formas'=>$formas,'materiales'=>$materiales,'ventanas'=>$ventanas]);
+        ->with(['tamanos'=>$tamanos,'estilos'=>$estilos,'formas'=>$formas,'materiales'=>$materiales,'ventanas'=>$ventanas, 'predeterminados'=>$predeterminados]);
     }
-    
+
 
 }

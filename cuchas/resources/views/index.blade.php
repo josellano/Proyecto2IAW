@@ -93,7 +93,7 @@
 				<h3>Tamaño</h3>
 				<div class="form-group">
 			 	@foreach($tamanos as $tamano)
-					<input type="radio" name='{{ $tamano->name }}' value='{{ $tamano->value }}' 
+					<input type="radio" name='{{ $tamano->name }}' value='{{ $tamano->value }}'
 						title='{{ $tamano->type }}'>{{ $tamano->text }}<br>
 				@endforeach
 				</div>
@@ -104,7 +104,7 @@
 				<img id="imgMat" style="float: left; margin-top:5px; margin-right: 10px; width:16px; height:150px;">
 				<h3>Material</h3>
 				@foreach($materiales as $material)
-					<input type="radio" name='{{ $material->name }}' value='{{ $material->value }}' 
+					<input type="radio" name='{{ $material->name }}' value='{{ $material->value }}'
 						title='{{ $material->type }}'>{{ $material->text }}<br>
 				@endforeach
 				<br>
@@ -113,7 +113,7 @@
 			<div class="col-lg-4">
 				<h3>Ventana</h3>
 				@foreach($ventanas as $ventana)
-					<input type="radio" name='{{ $ventana->name }}' value='{{ $ventana->value }}' 
+					<input type="radio" name='{{ $ventana->name }}' value='{{ $ventana->value }}'
 						title='{{ $ventana->type }}'>{{ $ventana->text }}<br>
 				@endforeach
 				<br>
@@ -179,14 +179,14 @@
 			<div class="col-lg-4">
 				<h4>Modelos Predeterminados</h4>
 				<div class="btn-group-vertical" role="group">
-					<ul><button type="button" class="btn1" onclick="cheapModel()" >Economica</button></ul>
-					<ul><button type="button" class="btn1" onclick="classicModel()">Clasica</button></ul>
-					<ul><button type="button" class="btn1" onclick="ejecutiveModel()">Ejecutiva</button></ul>
+				@foreach($predeterminados as $predeterminado)
+					<ul><button type="button" class="btn1" onclick="cargarPredet({{ $predeterminado }})">Predeterminada {{ $predeterminado->predet }}</button></ul>
+				@endforeach
 				</div>
 			</div>
 
 		</div>
-		<p>Costo Total <input class="textBox" type="text" id="total" readonly="true" value=0> <p>
+	<!--	<p>Costo Total <input class="textBox" type="text" id="total" readonly="true" value=0> <p>-->
 	</div>
 
 	<footer>

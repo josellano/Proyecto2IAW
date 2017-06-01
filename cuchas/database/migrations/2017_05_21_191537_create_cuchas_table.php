@@ -23,6 +23,7 @@ class CreateCuchasTable extends Migration
           $table->string('colorPared2');
           $table->string('forma');
           $table->string('colorTecho');
+          $table->integer('predet');
           $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ class Cucha extends Model
 {
     protected $table='cuchas';
 
-    protected $fillable=['email','tamaño','material','ventana','estilo','colorPared1','colorPared2','forma','colorTecho'];
+    protected $fillable=['email','tamaño','material','ventana','estilo','colorPared1','colorPared2','forma','colorTecho','predet'=>0];
 
     protected $primaryKey = 'email';
 }
