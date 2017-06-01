@@ -8,6 +8,8 @@ class Estilo extends Model
 {
     protected $table='estilos';
 
-    protected $fillable=['type','name','value','title','text'];
+    protected $fillable=['class','name','value','title','text'];
+
+    public $timestamps = false;
 
 }

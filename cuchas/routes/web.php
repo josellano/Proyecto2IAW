@@ -27,9 +27,20 @@ Route::get('/callback', 'SocialAuthController@callback');
 Route::get('/loadModel','CuchaController@recover');
 Route::post('/saveModel','CuchaController@store');
 
-Route::post('editPage/update/{id}','AdminController@update')->name('editPage/update/{id}');
 
-Route::post('editPage/createTam','AdminController@store')->name('editPage/createTam');
+//Creacion de elementos
+Route::post('editPage/createTam','AdminController@storeTam')->name('editPage/createTam');
+Route::post('editPage/createMat','AdminController@storeMat')->name('editPage/createMat');
+Route::post('editPage/createVen','AdminController@storeVen')->name('editPage/createVen');
+Route::post('editPage/createEst','AdminController@storeEst')->name('editPage/createEst');
+Route::post('editPage/createFor','AdminController@storeFor')->name('editPage/createFor');
+
+//Edicion de elementos
+Route::post('editPage/updateTam/{id}','AdminController@updateTam')->name('editPage/updateTam/{id}');
+Route::post('editPage/updateMat/{id}','AdminController@updateMat')->name('editPage/updateMat/{id}');
+Route::post('editPage/updateVen/{id}','AdminController@updateVen')->name('editPage/updateVen/{id}');
+Route::post('editPage/updateEst/{id}','AdminController@updateEst')->name('editPage/updateEst/{id}');
+Route::post('editPage/updateFor/{id}','AdminController@updateFor')->name('editPage/updateFor/{id}');
 
 //Eliminacion de elementos
 Route::get('editPage/tamano/destroy/{id}', 'AdminController@deleteTam')->name('editPage/tamano/destroy/{id}');

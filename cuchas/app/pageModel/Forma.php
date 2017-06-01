@@ -10,4 +10,6 @@ class Forma extends Model
 
     protected $fillable=['name','value','title','text'];
 
+    public $timestamps = false;
+
 }

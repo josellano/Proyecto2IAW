@@ -10,4 +10,6 @@ class Material extends Model
 
     protected $fillable=['name','value','title','text','src'];
 
+    public $timestamps = false;
+
 }

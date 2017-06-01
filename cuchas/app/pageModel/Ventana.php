@@ -10,4 +10,6 @@ class Ventana extends Model
 
     protected $fillable=['name','value','title','text'];
 
+    public $timestamps = false;
+
 }

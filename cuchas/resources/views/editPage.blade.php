@@ -105,7 +105,7 @@
 									@foreach ($tamanos as $tamano)
 
 												<tr>
-													{!! Form::open(['route' => ['editPage/update/{id}' , $tamano->id ] , 'method' => 'post', 'novalidate']) !!}
+													{!! Form::open(['route' => ['editPage/updateTam/{id}' , $tamano->id ] , 'method' => 'post', 'novalidate']) !!}
 													<td><div class="form-group">{!! Form::text('value', $tamano->value, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
 													<td><div class="form-group">{!! Form::text('title',$tamano->title, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
 													<td><div class="form-group">{!! Form::text('text', $tamano->text, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
@@ -125,21 +125,27 @@
 							<table>
 									<th>Material</th>
 						      <th>Precio</th>
-						      <th>Descripcion</th>
+									<th>Descripcion</th>
 									<tr>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></td>
+
+
+										{!! Form::open(['route' => 'editPage/createMat', 'method' => 'post', 'enctype' => 'multipart/form-data' , 'novalidate']) !!}
+										<td><div class="form-group">{!! Form::text('value', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('title', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('text', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+									<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></div></td>
+										{!! Form::close() !!}
 									</tr>
 									@foreach ($materiales as $material)
 
 												<tr>
-													<td><input class="textBoxEditar" type="text" value="{{ $material->value }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $material->title }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $material->text }}" ></td>
-													<td><button type="submit" class="textBoxEditar" name = "editar" value= "{{ $material->id }}" class="btneditAdmin" >Actualizar</button>	</td>
-													<td><a href="{{ route('editPage/material/destroy/{id}', ['id' => $material->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></td>
+													{!! Form::open(['route' => ['editPage/updateMat/{id}' , $material->id ] , 'method' => 'post', 'novalidate']) !!}
+													<td><div class="form-group">{!! Form::text('value', $material->value, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('title',$material->title, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('text', $material->text, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="actualizar" name="button" value="Actualizar" class="btnEditPage"/><a/></div></td>
+													{!! Form::close() !!}
+													<td><div class="form-group"><a href="{{ route('editPage/material/destroy/{id}', ['id' => $material->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></div></td>
 												</tr>
 
 								@endforeach
@@ -155,19 +161,23 @@
 						      <th>Precio</th>
 						      <th>Descripcion</th>
 									<tr>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></td>
+										{!! Form::open(['route' => 'editPage/createVen', 'method' => 'post', 'novalidate']) !!}
+										<td><div class="form-group">{!! Form::text('value', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('title', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('text', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></div></td>
+										{!! Form::close() !!}
 									</tr>
 									@foreach ($ventanas as $ventana)
 
 												<tr>
-													<td><input class="textBoxEditar" type="text" value="{{ $ventana->value }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $ventana->title }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $ventana->text }}" ></td>
-													<td><button type="submit" class="textBoxEditar" name = "editar" value= "{{ $ventana->id }}" class="btneditAdmin" >Actualizar</button>	</td>
-													<td><a href="{{ route('editPage/ventana/destroy/{id}', ['id' => $ventana->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></td>
+													{!! Form::open(['route' => ['editPage/updateVen/{id}' , $ventana->id ] , 'method' => 'post', 'novalidate']) !!}
+													<td><div class="form-group">{!! Form::text('value', $ventana->value, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('title',$ventana->title, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('text', $ventana->text, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="actualizar" name="button" value="Actualizar" class="btnEditPage"/><a/></div></td>
+													{!! Form::close() !!}
+													<td><div class="form-group"><a href="{{ route('editPage/ventana/destroy/{id}', ['id' => $ventana->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></div></td>
 												</tr>
 
 								@endforeach
@@ -184,21 +194,25 @@
 						      <th>Precio</th>
 						      <th>Descripcion</th>
 									<tr>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></td>
+										{!! Form::open(['route' => 'editPage/createEst', 'method' => 'post', 'novalidate']) !!}
+										<td><div class="form-group">{!! Form::text('value', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('class', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('title', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('text', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></div></td>
+										{!! Form::close() !!}
 									</tr>
 									@foreach ($estilos as $estilo)
 
 												<tr>
-													<td><input class="textBoxEditar" type="text" value="{{ $estilo->value }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $estilo->class }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $estilo->title }}" ></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $estilo->text }}" ></td>
-													<td><button type="submit" class="textBoxEditar" name = "editar" value= "{{ $estilo->id }}" class="btneditAdmin" >Actualizar</button>	</td>
-													<td><a href="{{ route('editPage/estilo/destroy/{id}', ['id' => $estilo->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></td>
+													{!! Form::open(['route' => ['editPage/updateEst/{id}' , $estilo->id ] , 'method' => 'post', 'novalidate']) !!}
+													<td><div class="form-group">{!! Form::text('value', $estilo->value, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('class',$estilo->class, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('title', $estilo->title, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('text', $estilo->text, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="actualizar" name="button" value="Actualizar" class="btnEditPage"/><a/></div></td>
+													{!! Form::close() !!}
+													<td><div class="form-group"><a href="{{ route('editPage/estilo/destroy/{id}', ['id' => $estilo->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></div></td>
 												</tr>
 
 								@endforeach
@@ -214,19 +228,23 @@
 						      <th>Precio</th>
 						      <th>Descripcion</th>
 									<tr>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><input class="textBoxEditar" type="text" value="" ></td>
-										<td><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></td>
+										{!! Form::open(['route' => 'editPage/createFor', 'method' => 'post', 'novalidate']) !!}
+										<td><div class="form-group">{!! Form::text('value', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('title', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group">{!! Form::text('text', null, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+										<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="crear" name="button" value="Crear" class="btnEditPage"/><a/></div></td>
+										{!! Form::close() !!}
 									</tr>
 									@foreach ($formas as $forma)
 
 												<tr>
-													<td><input class="textBoxEditar" type="text" value="{{ $forma->value }}"></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $forma->title }}"></td>
-													<td><input class="textBoxEditar" type="text" value="{{ $forma->text }}"></td>
-													<td><button type="submit" class="textBoxEditar" name = "editar" value= "{{ $forma->id }}" class="btneditAdmin" >Actualizar</button>	</td>
-													<td><a href="{{ route('editPage/forma/destroy/{id}', ['id' => $forma->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></td>
+													{!! Form::open(['route' => ['editPage/updateFor/{id}' , $forma->id ] , 'method' => 'post', 'novalidate']) !!}
+													<td><div class="form-group">{!! Form::text('value', $forma->value, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('title',$forma->title, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group">{!! Form::text('text', $forma->text, ['class' => 'form-control' , 'required' => 'required']) !!}</div></td>
+													<td><div class="form-group"><a href="{{ route('editPage') }}" ><input type="submit" id="actualizar" name="button" value="Actualizar" class="btnEditPage"/><a/></div></td>
+													{!! Form::close() !!}
+													<td><div class="form-group"><a href="{{ route('editPage/forma/destroy/{id}', ['id' => $forma->id]) }}" ><input type="submit" id="eliminar" name="button" value="Eliminar" class="btnEditPage"/><a/></div></td>
 												</tr>
 
 								@endforeach
@@ -239,7 +257,7 @@
 
 </div>
 	<footer>
-		<!--<a  onclick="footerInformation()" > ¿Quienes somos? </a><br />-->
+
 		<a class="linkFooter" onclick="footerInformation()">Quienes somos</a>
 
 		<div class="dropup">
